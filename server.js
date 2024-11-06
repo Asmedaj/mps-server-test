@@ -9,9 +9,10 @@ const port = 3000;
 
 // Создание подключения к базе данных
 const db = mysql.createConnection({
-  host: 'mysql://root:wFPtFKxLAdljQmLPxrZNTUkZJEwuZZTL@autorack.proxy.rlwy.net:51486/railway',
-  user: 'root', // Ваш пользователь MySQL
-  password: 'wFPtFKxLAdljQmLPxrZNTUkZJEwuZZTL', // Ваш пароль MySQL
+ host: 'autorack.proxy.rlwy.net',
+  port: 51486,
+  user: 'root',
+  password: 'wFPtFKxLAdljQmLPxrZNTUkZJEwuZZTL',
   database: 'railway'
 });
 
