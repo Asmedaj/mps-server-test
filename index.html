@@ -12,10 +12,11 @@
       fetch('/latest-data')
         .then(response => response.json())
         .then(data => {
+          console.log(data);
           document.getElementById('I').textContent = data.I;
-          document.getElementById('Vp').textContent = data.Vp;
-          document.getElementById('Vm').textContent = data.Vm;
-          document.getElementById('Vl').textContent = data.Vl;
+          document.getElementById('VP').textContent = data.VP;
+          document.getElementById('VM').textContent = data.VM;
+          document.getElementById('VL').textContent = data.VL;
         })
         .catch(err => console.error(err));
     }, 500);

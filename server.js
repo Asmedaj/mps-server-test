@@ -9,10 +9,10 @@ const port = 3000;
 
 // Создание подключения к базе данных
 const db = mysql.createConnection({
-  host: 'localhost',
+  host: 'mysql://root:wFPtFKxLAdljQmLPxrZNTUkZJEwuZZTL@autorack.proxy.rlwy.net:51486/railway',
   user: 'root', // Ваш пользователь MySQL
-  password: '', // Ваш пароль MySQL
-  database: 'sensor_data'
+  password: 'wFPtFKxLAdljQmLPxrZNTUkZJEwuZZTL', // Ваш пароль MySQL
+  database: 'railway'
 });
 
 // Подключение к базе данных
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 
 // Endpoint для получения последних данных
 app.get('/latest-data', (req, res) => {
-  const query = 'SELECT I, Vp, Vm, Vl FROM readings ORDER BY time DESC LIMIT 1';
+  const query = 'SELECT * FROM logs ORDER BY ID DESC LIMIT 1';
   db.query(query, (err, results) => {
     if (err) {
       console.error('Ошибка при получении данных:', err);
