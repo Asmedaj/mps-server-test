@@ -34,10 +34,10 @@ wss.on('connection', ws => {
 
   ws.on('message', data => {
     // Получаем данные от клиента
-    const { I, Vp, Vm, Vl, TIME, ID } = JSON.parse(data);
+    const { I, Vp, Vm, Vl, ID } = JSON.parse(data);
 
     // Запись данных в базу
-    const query = 'INSERT INTO readings (I, Vp, Vm, Vl, unique_id) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO logs (I, VP, VM, VL, I) VALUES (?, ?, ?, ?, ?)';
     db.query(query, [I, Vp, Vm, Vl, ID], (err, results) => {
       if (err) {
         console.error('Ошибка записи в базу данных:', err);
@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
 
 // Endpoint для получения последних данных
 app.get('/latest-data', (req, res) => {
-  /*
+  
   const query = 'SELECT * FROM logs ORDER BY ID DESC LIMIT 1';
   db.query(query, (err, results) => {
     if (err) {
@@ -67,8 +67,7 @@ app.get('/latest-data', (req, res) => {
       return res.status(500).send('Ошибка при получении данных');
     }
     res.json(results[0]);
-  });*/
-  res.json({ID: 1, I: 100, VP: 100, VM: 100, VL: 200});
+  });
 });
 
 
