@@ -37,7 +37,7 @@ wss.on('connection', ws => {
     const { I, Vp, Vm, Vl, ID } = JSON.parse(data);
 
     // Запись данных в базу
-    const query = 'INSERT INTO logs (I, VP, VM, VL, I) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO logs (I, VP, VM, VL, ID) VALUES (?, ?, ?, ?, ?)';
     db.query(query, [I, Vp, Vm, Vl, ID], (err, results) => {
       if (err) {
         console.error('Ошибка записи в базу данных:', err);
