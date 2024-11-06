@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensor Data</title>
+  <script>
+    const socket = new WebSocket('ws://localhost:3000');
+    
+    // Получаем значения из базы раз в полсекунды
+    setInterval(() => {
+      fetch('/latest-data')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('I').textContent = data.I;
+          document.getElementById('Vp').textContent = data.Vp;
+          document.getElementById('Vm').textContent = data.Vm;
+          document.getElementById('Vl').textContent = data.Vl;
+        })
+        .catch(err => console.error(err));
+    }, 500);
+
+  </script>
+</head>
+<body>
+  <h1>Последние данные с устройства</h1>
+  <p>I: <span id="I">0</span></p>
+  <p>Vp: <span id="Vp">0</span></p>
+  <p>Vm: <span id="Vm">0</span></p>
+  <p>Vl: <span id="Vl">0</span></p>
+</body>
+</html>
