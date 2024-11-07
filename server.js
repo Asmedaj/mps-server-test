@@ -34,11 +34,11 @@ wss.on('connection', ws => {
 
   ws.on('message', data => {
     // Получаем данные от клиента
-    const { I, Vp, Vm, Vl, ID } = JSON.parse(data);
+    const { I, VP, VM, VL, ID } = JSON.parse(data);
 
     // Запись данных в базу
     const query = 'INSERT INTO logs (I, VP, VM, VL, ID) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [I, Vp, Vm, Vl, ID], (err, results) => {
+    db.query(query, [I, VP, VM, VL, ID], (err, results) => {
       if (err) {
         console.error('Ошибка записи в базу данных:', err);
         return;
